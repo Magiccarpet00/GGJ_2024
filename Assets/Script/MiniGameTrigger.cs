@@ -10,12 +10,9 @@ public class MiniGameTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("MiniGameTrigger"))
+        if (collision.CompareTag("Player"))
         {
-            MiniGameName miniGameName = collision.GetComponent<MiniGameTrigger>().gameName;
-
-            loadMiniGame?.Invoke(miniGameName);
-
+            loadMiniGame?.Invoke(gameName);
         }
     }
 }
