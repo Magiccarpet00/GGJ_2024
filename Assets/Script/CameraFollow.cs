@@ -4,33 +4,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField]private Transform target;
+    [SerializeField]private float smoothSped = 0.05f;
+    [SerializeField] private Vector3 offset;
 
-    [SerializeField] private float speed;
-    [SerializeField] private Transform player;
-    [SerializeField] private float movementDuration;
-
-    private float elapsedTime = 0f;
-    private Vector2 startPosition;
-    private Vector2 currentPos;
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        elapsedTime += Time.deltaTime * speed;
-
-        currentPos = Vector2.Lerp(startPosition, player.position, elapsedTime / movementDuration);
-        transform.position = new Vector3(currentPos.x, currentPos.y, -10);
-
-        if (elapsedTime >= movementDuration)
-        {
-            elapsedTime = 0;
-            startPosition = new Vector2(transform.position.x, transform.position.y);
-        }
-
+        Vector3 desiredPosition = target.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSped);
+        transform.position = smoothedPosition;
     }
 }
