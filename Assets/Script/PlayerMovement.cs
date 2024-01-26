@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
+
 
     void Update()
     {
@@ -20,24 +22,8 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("MiniGameTrigger"))
-        {
-            MiniGameName miniGameName = collision.GetComponent<MiniGameTrigger>().gameName;
 
-            switch (miniGameName)
-            {
-                case MiniGameName.CARS:
-                    
-                    break;
-                case MiniGameName.FIGHT:
-                    break;
-                case MiniGameName.FIND:
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+
+
+
 }
