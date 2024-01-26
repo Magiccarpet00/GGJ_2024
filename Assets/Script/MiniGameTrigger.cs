@@ -13,6 +13,7 @@ public class MiniGameTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             loadMiniGame?.Invoke(gameName);
+            gameObject.SetActive(false);
         }
     }
 }
