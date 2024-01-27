@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Left", movement.y);
+        animator.SetFloat("Up", movement.x);
     }
 
     private void FixedUpdate()
