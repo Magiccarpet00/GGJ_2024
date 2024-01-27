@@ -13,7 +13,7 @@ public class BallMiniGameManager : MiniGameManager
 
     [SerializeField] private BallMcFirst ball;
 
-    public GameObject prefabBras;
+    [SerializeField] private GameObject prefabBras;
 
     private void Awake()
     {
@@ -51,6 +51,16 @@ public class BallMiniGameManager : MiniGameManager
         if(Input.GetKeyDown(KeyCode.R)) // CODE TMP
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("zozo");
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            worldPosition.z = 0;
+            Instantiate(prefabBras, worldPosition, Quaternion.identity);
         }
     }
 }

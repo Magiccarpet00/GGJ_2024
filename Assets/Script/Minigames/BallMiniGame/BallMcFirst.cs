@@ -28,7 +28,7 @@ public class BallMcFirst : MonoBehaviour
         if (BallMiniGameManager.instance.lose == false)
         {
 
-            Instantiate(BallMiniGameManager.instance.prefabBras, transform.position, Quaternion.identity);
+
 
             float currentSpeed = speed;
             speed += incrSpeed;
