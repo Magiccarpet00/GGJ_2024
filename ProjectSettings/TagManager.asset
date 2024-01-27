@@ -7,16 +7,20 @@ TagManager:
   - MiniGameTrigger
   - Cul
   - Road
-<<<<<<< Updated upstream
-  - Ground
-=======
-  - Beer
-  - couille
-  - Fouet
-  - Chiwawa
   - Collier
-  - Plombier
->>>>>>> Stashed changes
+  - couille
+  - plombier
+  - medoc
+  - Lapin
+  - cochon
+  - god
+  - fouet
+  - chiwawa
+  - "Bi\xE8re"
+  - Bang
+  - Menottes
+  - Bisous
+  - Sopalin
   layers:
   - Default
   - TransparentFX
