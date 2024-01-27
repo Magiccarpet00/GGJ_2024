@@ -23,6 +23,9 @@ public class FightMingameManager : MonoBehaviour
     [SerializeField] private float damagePlayer;
     [SerializeField] private float damageEnemie;
 
+    [SerializeField] private GameObject prefabWord;
+    [SerializeField] private Transform pos1, pos2;
+
     private void Start()
     {
         StartCoroutine(AutoPunch());
@@ -42,7 +45,8 @@ public class FightMingameManager : MonoBehaviour
 
     private void TakeDamage(int character)
     {
-        
+        if (winner != 0)
+            return;
 
         if(character == 1)
         {
@@ -52,9 +56,13 @@ public class FightMingameManager : MonoBehaviour
             {
                 lifePlayer = 0;
                 winner = 2;
+
+                player.SetTrigger("hurt");
             }
 
             playerBar.value = lifePlayer;
+
+            Instantiate(prefabWord, pos1.position, Quaternion.identity);
 
         }
         else if(character == 2)
@@ -65,9 +73,13 @@ public class FightMingameManager : MonoBehaviour
             {
                 lifeEnemie = 0;
                 winner = 1;
+
+                enemie.SetTrigger("hurt");
             }
 
             enemieBar.value = lifeEnemie;
+
+            Instantiate(prefabWord, pos2.position, Quaternion.identity);
         }
 
     }

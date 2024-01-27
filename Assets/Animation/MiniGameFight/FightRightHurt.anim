@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FightLeftIlde
+  m_Name: FightRightHurt
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -34,7 +34,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: john_fight3
+    path: bat_fight3
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -42,7 +42,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 6ada285a8f1996845867f982354a5eec, type: 3}
+      value: {fileID: 21300000, guid: f4f6c39c0ee4f114e950adfd8e4da5b3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,7 +56,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1349409147
+      path: 3728629333
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 212
@@ -74,7 +74,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 6ada285a8f1996845867f982354a5eec, type: 3}
+    - {fileID: 21300000, guid: f4f6c39c0ee4f114e950adfd8e4da5b3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -113,7 +113,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: john_fight3
+    path: bat_fight3
     classID: 212
     script: {fileID: 0}
     flags: 0
