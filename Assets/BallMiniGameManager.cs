@@ -5,8 +5,8 @@ using UnityEngine;
 public class BallMiniGameManager : MiniGameManager
 {
     public static BallMiniGameManager instance;
-    private bool win;
-    private bool lose;
+    [SerializeField] private bool win;
+    public bool lose;
     [SerializeField] private float miniGameTime;
 
     private void Awake()
@@ -31,8 +31,11 @@ public class BallMiniGameManager : MiniGameManager
     private IEnumerator Chronos()
     {
         yield return new WaitForSeconds(miniGameTime);
-        win = true;
+        
         if(lose == false)
+        {
+            win = true;
             Win();
+        }
     }
 }

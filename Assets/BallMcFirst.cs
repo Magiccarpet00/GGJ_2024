@@ -13,19 +13,28 @@ public class BallMcFirst : MonoBehaviour
 
     private void OnMouseDown()
     {
-        float currentSpeed = speed;
-        speed += incrSpeed;
-        v2 = new Vector2(Random.Range(-pan, pan),1f);
-        currentSpeed += Random.Range(-rngOffSet, rngOffSet);        
-        v2 = (v2.normalized) * currentSpeed;
+        Debug.Log(BallMiniGameManager.instance.lose);
 
-        rb.AddForce(v2);
+        if (BallMiniGameManager.instance.lose == false)
+        {
+            float currentSpeed = speed;
+            speed += incrSpeed;
+            v2 = new Vector2(Random.Range(-pan, pan), 1f);
+            currentSpeed += Random.Range(-rngOffSet, rngOffSet);
+            v2 = (v2.normalized) * currentSpeed;
+
+            rb.AddForce(v2);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
         {
+
+            rb.velocity = Vector3.zero;
+            rb.Sleep();
+            
             BallMiniGameManager.instance.PreLose();
         }
     }

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField] private
-    [SerializeField] private Animator aniamtor;
+    //[SerializeField] private
+    //[SerializeField] private Animator aniamtor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    //// Start is called before the first frame update
+    //void Start()
+    //{
         
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
         
-    }
+    //}
 }
