@@ -150,5 +150,6 @@ public enum MiniGameName
 {
     CARS,
     FIGHT,
-    FIND
+    FIND,
+    MCFIRST
 }

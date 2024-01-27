@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class BallMiniGameManager : MiniGameManager
 {
     public static BallMiniGameManager instance;
@@ -9,13 +9,20 @@ public class BallMiniGameManager : MiniGameManager
     public bool lose;
     [SerializeField] private float miniGameTime;
 
+    [HideInInspector] public bool gameStarted;
+
+    [SerializeField] private BallMcFirst ball;
+
+    public GameObject prefabBras;
+
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    public void StartGame()
     {
+        gameStarted = true;
         StartCoroutine(Chronos());
     }
     
@@ -36,6 +43,14 @@ public class BallMiniGameManager : MiniGameManager
         {
             win = true;
             Win();
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R)) // CODE TMP
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

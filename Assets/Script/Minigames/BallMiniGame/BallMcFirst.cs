@@ -10,13 +10,26 @@ public class BallMcFirst : MonoBehaviour
     [SerializeField] private float incrSpeed;
     [SerializeField] private float pan;
     [SerializeField] private float rngOffSet;
+    
+
+    private void Start()
+    {
+        rb.Sleep();
+    }
 
     private void OnMouseDown()
     {
-        Debug.Log(BallMiniGameManager.instance.lose);
+        if (BallMiniGameManager.instance.gameStarted == false)
+        {
+            BallMiniGameManager.instance.StartGame();
+            rb.WakeUp();
+        }
 
         if (BallMiniGameManager.instance.lose == false)
         {
+
+            Instantiate(BallMiniGameManager.instance.prefabBras, transform.position, Quaternion.identity);
+
             float currentSpeed = speed;
             speed += incrSpeed;
             v2 = new Vector2(Random.Range(-pan, pan), 1f);
@@ -26,6 +39,8 @@ public class BallMcFirst : MonoBehaviour
             rb.AddForce(v2);
         }
     }
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
