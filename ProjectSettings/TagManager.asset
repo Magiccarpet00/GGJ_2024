@@ -7,7 +7,16 @@ TagManager:
   - MiniGameTrigger
   - Cul
   - Road
+<<<<<<< Updated upstream
   - Ground
+=======
+  - Beer
+  - couille
+  - Fouet
+  - Chiwawa
+  - Collier
+  - Plombier
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

@@ -40,28 +40,45 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
     public void OnPointerClick(PointerEventData eventData)
     {
         isClicked = !isClicked;
-       
+
 
         if (isClicked == true)
         {
             Color newColor = Color.blue;
             assetImage.color = newColor;
 
-            parentScript.instance.firstGameObjectClicked = gameObject; //soucis
-            Debug.Log(parentScript.instance.firstGameObjectClicked.tag);
+            parentScript.instance.DetectObjectClicked(gameObject);
 
-            if (parentScript.instance.firstGameObjectClicked != null)
-            {
-                parentScript.instance.secondGameObjectClicked = gameObject;
-                Debug.Log(parentScript.instance.secondGameObjectClicked.tag);
-            }
+          
         }
+
+           
 
         if (isClicked == false)
         {
-            assetImage.color = currentColor;
+            parentScript.instance.DeleteObjectClicked(gameObject);
+
+                assetImage.color = currentColor;
         }
  
+    }
+
+    public void DestroyImage()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void DontMatchImage()
+    {
+  
+        assetImage.color = currentColor;
+        isClicked = false;
+
+        parentScript.instance.EndAnimation();
+
+        parentScript.instance.firstGameObjectClicked = null;
+        parentScript.instance.secondGameObjectClicked = null;
+
     }
 
     // Update is called once per frame
