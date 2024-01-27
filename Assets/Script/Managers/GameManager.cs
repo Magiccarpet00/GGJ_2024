@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     GameObject triggerToDestroy = null;
     MiniGameTrigger currentLoopGameObject = null;
 
-    private Dictionary<MiniGameName, int> difficultyDictionary;
+    private Dictionary<MiniGameName, int> difficultyDictionary = new Dictionary<MiniGameName, int>();
 
     private void Awake()
     {

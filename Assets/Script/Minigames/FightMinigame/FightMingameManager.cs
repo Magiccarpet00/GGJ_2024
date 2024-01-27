@@ -26,12 +26,11 @@ public class FightMingameManager : MiniGameManager
     [SerializeField] private GameObject prefabWord;
     [SerializeField] private Transform pos1, pos2;
 
-    [SerializeField] private float[] lvl;
-    public int difficulty = 0;
+    [SerializeField] private float[] lvl; //attention yen a que 4
 
     private void Start()
     {
-        damageEnemie = lvl[difficulty];
+        damageEnemie = lvl[difficultyParameter];
         StartCoroutine(AutoPunch());
     }
 
@@ -63,7 +62,7 @@ public class FightMingameManager : MiniGameManager
                 winner = 2;
 
                 player.SetTrigger("hurt");
-                Win();
+                Lose();
             }
 
             playerBar.value = lifePlayer;
@@ -81,7 +80,7 @@ public class FightMingameManager : MiniGameManager
                 winner = 1;
 
                 enemie.SetTrigger("hurt");
-                Lose();
+                Win();
             }
 
             enemieBar.value = lifeEnemie;
