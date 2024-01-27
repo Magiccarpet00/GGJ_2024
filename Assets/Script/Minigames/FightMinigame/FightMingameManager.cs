@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class FightMingameManager : MiniGameManager
 {
-    
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip audioPunch;
+
     [SerializeField] private Animator player;
     [SerializeField] private Animator enemie;
 
@@ -32,6 +36,7 @@ public class FightMingameManager : MiniGameManager
     {
         damageEnemie = lvl[difficultyParameter];
         StartCoroutine(AutoPunch());
+        audioSource.PlayOneShot(audioClip);
     }
 
     public IEnumerator AutoPunch()
@@ -42,6 +47,7 @@ public class FightMingameManager : MiniGameManager
         {
             enemie.SetTrigger("punch");
             TakeDamage(1);
+            audioSource.PlayOneShot(audioPunch);
             StartCoroutine(AutoPunch());
         }
         
