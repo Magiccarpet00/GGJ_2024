@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class parentScript : MonoBehaviour
+public class parentScript : MiniGameManager
 {
     public static parentScript instance;
 
@@ -11,7 +12,15 @@ public class parentScript : MonoBehaviour
     public GameObject firstGameObjectClicked;
     public GameObject secondGameObjectClicked;
 
-    public bool clickPossible;
+    Coroutine coroutineTimer;
+
+    private float timer = 60;
+
+    public List<GameObject> canvas;
+
+    GameObject currentCanvas;
+
+    public bool clickPossible = true;
 
 
 
@@ -22,8 +31,8 @@ public class parentScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
+        //launchTimer(timer);
+        setupLevel();
     }
 
     // Update is called once per frame
@@ -41,18 +50,39 @@ public class parentScript : MonoBehaviour
             firstGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
             secondGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
         }
+
+        //if(currentCanvas.transform.childCount == 0)
+        //{
+        //    StopCoroutine(coroutineTimer);
+        //    Win();
+        //}
+    }
+
+    private void setupLevel ()
+    {
+        //currentCanvas = canvas[difficultyParameter];
+        //currentCanvas.SetActive(true);
+    }
+
+    private void launchTimer(float timer)
+    {
+        coroutineTimer = StartCoroutine(Timer(timer));
     }
 
     public void DetectObjectClicked(GameObject objectClicked)
     {
-        if(firstGameObjectClicked == null)
+        if(clickPossible)
         {
-            firstGameObjectClicked = objectClicked;
+            if (firstGameObjectClicked == null && clickPossible)
+            {
+                firstGameObjectClicked = objectClicked;
+            }
+            else
+            {
+                secondGameObjectClicked = objectClicked;
+            }
         }
-        else
-        {
-            secondGameObjectClicked = objectClicked;
-        }
+       
     }
 
     public void DeleteObjectClicked(GameObject objecDeclicked)
@@ -67,6 +97,13 @@ public class parentScript : MonoBehaviour
         }
     }
 
+    IEnumerator Timer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+
+        Lose();
+    }
+
     public void EndAnimation()
     {
         if (!firstGameObjectClicked && !secondGameObjectClicked) return;
@@ -75,4 +112,6 @@ public class parentScript : MonoBehaviour
         secondGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch", false);
 
     }
+
+   
 }
