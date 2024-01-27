@@ -468,6 +468,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1384545333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384545334}
+  m_Layer: 0
+  m_Name: AllDoors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1384545334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384545333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.24715179, y: 1.5765972, z: -0.017788379}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1547340232}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487972851
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,27 +673,13 @@ GameObject:
   - component: {fileID: 1547340232}
   - component: {fileID: 1547340231}
   - component: {fileID: 1547340230}
-  - component: {fileID: 1547340229}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Cars_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1547340229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547340228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812e2e6a3cd86f345bbff27945fe8be8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedMinigame: 0
 --- !u!61 &1547340230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -767,12 +785,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547340228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0321, y: 2.96, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2150518, y: 1.3834028, z: 0.017788379}
   m_LocalScale: {x: 5.2877, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1384545334}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1590025837 stripped
 MonoBehaviour:
@@ -1151,9 +1169,13 @@ PrefabInstance:
       propertyPath: gameName
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
+      propertyPath: linkedDoor
+      value: 
+      objectReference: {fileID: 1547340228}
     - target: {fileID: 5538543209624596116, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: m_Name
-      value: MiniGameTrigger
+      value: CarsTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 8390898521921510217, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1210,6 +1232,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 2046278759}
   - {fileID: 1498004421}
-  - {fileID: 1547340232}
   - {fileID: 1287818413}
   - {fileID: 1487972852}
+  - {fileID: 1384545334}

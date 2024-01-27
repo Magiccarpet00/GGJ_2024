@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MiniGameTrigger
   - Cul
+  - Road
   layers:
   - Default
   - TransparentFX
