@@ -724,7 +724,7 @@ MonoBehaviour:
   miniGameTime: 10
   gameStarted: 0
   ball: {fileID: 0}
-  prefabBras: {fileID: 7554069427741329416, guid: d4b4d7277b8c0dc4eb9a3f5b775c068b, type: 3}
+  prefabBras: {fileID: 626612003412971502, guid: d4b4d7277b8c0dc4eb9a3f5b775c068b, type: 3}
 --- !u!4 &1551789977
 Transform:
   m_ObjectHideFlags: 0
