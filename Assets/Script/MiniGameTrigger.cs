@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class MiniGameTrigger : MonoBehaviour
 {
+    [SerializeField] private GameObject linkedDoor;
     public MiniGameName gameName;
     public event Action<MiniGameName> loadMiniGame;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,4 +18,10 @@ public class MiniGameTrigger : MonoBehaviour
             //gameObject.SetActive(false);
         }
     }
+
+	private void OnDestroy()
+	{
+        //Launch Animation?
+        Destroy(linkedDoor);
+	}
 }

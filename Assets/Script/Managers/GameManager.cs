@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] LoadingScreen loadingScreen;
 
     private MiniGameName currentMiniGame;
+    private MiniGameManager currentMiniGameManager;
 
     private void Awake()
     {
@@ -28,16 +29,30 @@ public class GameManager : MonoBehaviour
         
     }
 
-	private void SceneLoader_SceneLoaded(GameObject[] gameObjects)
+	private void SceneLoader_SceneLoaded(GameObject[] mainScene, GameObject[] miniGame)
 	{
-		foreach (GameObject item in gameObjects)
+		foreach (GameObject item in mainScene)
 		{
             item.SetActive(item.name == gameObject.name || item.name == loadingScreen.name);           
 
 		}
 
         loadingScreen.ChangeState(true);
+        currentMiniGameManager = miniGame[0].GetComponent<MiniGameManager>();
+		currentMiniGameManager.OnWin += CurrentMiniGameManager_OnWin;
+		currentMiniGameManager.OnLose += CurrentMiniGameManager_OnLose;
         SceneLoader.instance.SceneLoaded -= SceneLoader_SceneLoaded;
+    }
+
+	private void CurrentMiniGameManager_OnLose()
+	{
+		
+	}
+
+	private void CurrentMiniGameManager_OnWin()
+	{
+        loadingScreen.gameObject.SetActive(true);
+        loadingScreen.StartLoading += LoadingScreen_StartLoading_MainScene;
     }
 
 	private void TriggerLoadMiniGame(MiniGameName obj)
@@ -53,16 +68,7 @@ public class GameManager : MonoBehaviour
 
         loadingScreen.StartLoading -= LoadingScreen_StartLoading_MiniGame;
         SceneLoader.instance.LoadMiniGame(currentMiniGame);
-        StartCoroutine(WaitMiniGameTime());
         SceneLoader.instance.SceneLoaded += SceneLoader_SceneLoaded;
-    }
-
-	IEnumerator WaitMiniGameTime()
-	{
-        yield return new WaitForSeconds(10);
-        loadingScreen.gameObject.SetActive(true);
-		loadingScreen.StartLoading += LoadingScreen_StartLoading_MainScene;
-
     }
 
 	private void LoadingScreen_StartLoading_MainScene()
@@ -73,13 +79,32 @@ public class GameManager : MonoBehaviour
 
 	private void Instance_SceneUnloaded(GameObject[] gameObjects)
 	{
+        GameObject triggerToDestroy = null;
+        MiniGameTrigger currentLoopGameObject = null;
         foreach (GameObject item in gameObjects)
         {
             if (item.name == "AllMiniGameTriggers")
-                item.SetActive(false);
+			{
+                int childCount = item.transform.childCount;
+				for (int i = 0; i < childCount; i++)
+				{
+                    currentLoopGameObject = item.transform.GetChild(i).GetComponent<MiniGameTrigger>();
+                    if (currentLoopGameObject.gameName == currentMiniGame)
+					{
+                        triggerToDestroy = currentLoopGameObject.gameObject;
+                        break;
+					}
+				}
+			}
             else
                 item.SetActive(true);
 
+        }
+
+        if (triggerToDestroy)
+        {
+            miniGameTriggers.Remove(currentLoopGameObject);
+            Destroy(triggerToDestroy);
         }
 
         loadingScreen.ChangeState(true);

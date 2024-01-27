@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
 
-    public event Action<GameObject[]> SceneLoaded;
+    public event Action<GameObject[], GameObject[]> SceneLoaded;
     public event Action<GameObject[]> SceneUnloaded;
 
     public static SceneLoader instance;
 
     private string addedScene;
     private GameObject[] mainSceneObject;
+
+    
 
     private void Awake()
     {
@@ -69,6 +71,6 @@ public class SceneLoader : MonoBehaviour
 	private void AsyncLoad_completed(AsyncOperation obj)
 	{
         obj.completed -= AsyncLoad_completed;
-        SceneLoaded?.Invoke(mainSceneObject);
+        SceneLoaded?.Invoke(mainSceneObject, SceneManager.GetSceneAt(1).GetRootGameObjects());
     }
 }
