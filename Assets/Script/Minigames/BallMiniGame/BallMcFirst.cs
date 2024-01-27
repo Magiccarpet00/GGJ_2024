@@ -6,7 +6,7 @@ public class BallMcFirst : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 v2;
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float incrSpeed;
     [SerializeField] private float pan;
     [SerializeField] private float rngOffSet;
