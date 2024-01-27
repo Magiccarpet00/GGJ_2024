@@ -7,25 +7,12 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private Transform player;
-    [SerializeField] private float movementDuration;
+    [SerializeField] private Vector3 offset;
 
-    private float elapsedTime = 0f;
-    private Vector2 startPosition;
-    private Vector2 currentPos;
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        elapsedTime += Time.deltaTime * speed;
-
-        currentPos = Vector2.Lerp(startPosition, player.position, elapsedTime / movementDuration);
-        transform.position = new Vector3(currentPos.x, currentPos.y, -10);
-
-        if (elapsedTime >= movementDuration)
-        {
-            elapsedTime = 0;
-            startPosition = new Vector2(transform.position.x, transform.position.y);
-        }
-
+        Vector3 desiredPos = player.position + offset;
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPos, speed);
+        transform.position = smoothPosition;
     }
 }
