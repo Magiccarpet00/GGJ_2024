@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
+    [SerializeField] private Transform triggerContainer;
     [SerializeField] private GameObject cam;
     [SerializeField] List<MiniGameTrigger> miniGameTriggers = new List<MiniGameTrigger>();
     [SerializeField] LoadingScreen loadingScreenOpen;
@@ -61,10 +62,10 @@ public class GameManager : MonoBehaviour
         SceneLoader.instance.SceneUnloaded += Instance_SceneUnloaded;
     }
 
-	private void TriggerLoadMiniGame(MiniGameName obj)
+	private void TriggerLoadMiniGame(MiniGameName obj, MiniGameTrigger sender)
     {
         currentMiniGame = obj;
-        mainScenePos = player.position;
+        mainScenePos = sender.returnPostion.position;
         loadingScreenOpen.gameObject.SetActive(true);
 		loadingScreenOpen.StartLoading += LoadingScreenOpen_StartLoading_MiniGame;
     }
@@ -138,8 +139,10 @@ public class GameManager : MonoBehaviour
         SceneLoader.instance.SceneUnloaded -= Instance_SceneUnloaded;
         
         yield return new WaitForSeconds(0.3f);
-
+        
+        player.position = mainScenePos;
         player.gameObject.SetActive(true);
+
     }
 }
 

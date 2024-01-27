@@ -7,14 +7,15 @@ public class MiniGameTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject linkedDoor;
     public MiniGameName gameName;
-    public event Action<MiniGameName> loadMiniGame;
+    public event Action<MiniGameName, MiniGameTrigger> loadMiniGame;
+    public Transform returnPostion;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            loadMiniGame?.Invoke(gameName);
+            loadMiniGame?.Invoke(gameName, this);
             //gameObject.SetActive(false);
         }
     }
