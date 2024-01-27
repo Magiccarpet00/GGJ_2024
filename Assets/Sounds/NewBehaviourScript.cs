@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private
-    [SerializeField] private Animator aniamtor;
-
     // Start is called before the first frame update
     void Start()
     {
