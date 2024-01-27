@@ -4,18 +4,62 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    //[SerializeField] private
-    //[SerializeField] private Animator aniamtor;
+    [SerializeField] private float speed;
+    [SerializeField] private float moveDuration;
+    [SerializeField] private Controller controller;
+    [SerializeField] private Animator animator;
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
+    private bool hold = false;
+    private Vector3 startPlayerPos;
+    private Vector3 PlayerlastPos;
 
-    //// Update is called once per frame
-    //void Update()
-    //{
+	private float elapsedTime;
+
+	private void Start()
+	{
+        startPlayerPos = transform.position;
+    }
+
+	// Update is called once per frame
+	void Update()
+    {
+        CheckInput();
+
+        if (hold) 
+		{
+            elapsedTime += Time.deltaTime * speed;
+            MoveCar();
+            transform.position = Vector3.MoveTowards(transform.position, PlayerlastPos, elapsedTime / moveDuration);
+            animator.SetFloat("Direction", controller.direction);
+        }
+        else
+		{
+            transform.position = Vector3.MoveTowards(transform.position, startPlayerPos, elapsedTime / moveDuration);
+            animator.SetFloat("Direction", 0);
+        }
         
-    //}
+
+        if (elapsedTime >= moveDuration)
+            elapsedTime = 0;
+    }
+
+    private void MoveCar()
+	{
+        Vector3 movement = controller.direction * Vector3.right;
+        PlayerlastPos = startPlayerPos + movement;
+	}
+
+    private void CheckInput()
+	{
+        if (Input.GetMouseButtonDown(0))
+        {
+            hold = true;
+            startPlayerPos = transform.position;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            hold = false;
+
+        }
+	}
 }
