@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MiniGameManager : MonoBehaviour
 {
-    [SerializeField] private LoadingScreen close;
-    [SerializeField] private LoadingScreen open;
+    [SerializeField] protected LoadingScreen close;
+    [SerializeField] protected LoadingScreen open;
     public event Action OnLose;
     public event Action OnWin;
 	public int difficultyParameter;

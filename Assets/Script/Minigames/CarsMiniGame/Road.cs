@@ -17,9 +17,12 @@ public class Road : MonoBehaviour
 
 	private void SetObstacles()
 	{
+		GameObject currentObs;
 		for (int i = 0; i < 2; i++)
 		{
-			obstaclePosition[Random.Range(0, 3)].SetActive(true);
+			currentObs = obstaclePosition[Random.Range(0, 3)];
+			currentObs.transform.GetChild(0).GetComponent<Obstacle>().SetupObstacle();
+			currentObs.SetActive(true);
 		}
 	}
     

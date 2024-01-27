@@ -12,7 +12,7 @@ public class RoadManager : MonoBehaviour
 
 	private List<Road> roads = new List<Road>();
 
-	private void Awake()
+	public void Init()
 	{
 		Road currentRoad = null;
 		for (int i = 0; i < nbrOfRoadPortion; i++)
