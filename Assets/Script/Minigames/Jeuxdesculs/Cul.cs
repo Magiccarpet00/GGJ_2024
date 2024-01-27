@@ -11,6 +11,8 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
     bool isClicked = false;
     Color currentColor;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isClicked == false)
+            if (isClicked == false)
         {
             assetImage.color = currentColor;
         }
@@ -39,28 +41,39 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        isClicked = !isClicked;
-
-
-        if (isClicked == true)
+        if (parentScript.instance.clickPossible == true)
         {
-            Color newColor = Color.blue;
-            assetImage.color = newColor;
+            isClicked = !isClicked;
 
-            parentScript.instance.DetectObjectClicked(gameObject);
 
-          
-        }
+            if (isClicked == true)
+            {
+                Color newColor = Color.gray;
+                assetImage.color = newColor;
 
-           
+                parentScript.instance.DetectObjectClicked(gameObject);
 
-        if (isClicked == false)
-        {
-            parentScript.instance.DeleteObjectClicked(gameObject);
+
+            }
+
+            if (isClicked == false)
+            {
+                parentScript.instance.DeleteObjectClicked(gameObject);
 
                 assetImage.color = currentColor;
+            }
         }
- 
+            
+    }
+
+    public void disableClick()
+    {
+        parentScript.instance.clickPossible = false;
+    }
+
+    public void ableClick()
+    {
+        parentScript.instance.clickPossible = true;
     }
 
     public void DestroyImage()

@@ -6,7 +6,7 @@ public class BallMcFirst : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 v2;
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float incrSpeed;
     [SerializeField] private float pan;
     [SerializeField] private float rngOffSet;
@@ -27,19 +27,21 @@ public class BallMcFirst : MonoBehaviour
 
         if (BallMiniGameManager.instance.lose == false)
         {
-
-
-
-            float currentSpeed = speed;
-            speed += incrSpeed;
-            v2 = new Vector2(Random.Range(-pan, pan), 1f);
-            currentSpeed += Random.Range(-rngOffSet, rngOffSet);
-            v2 = (v2.normalized) * currentSpeed;
-
-            rb.AddForce(v2);
+            StartCoroutine(Bounce());
         }
     }
 
+    public IEnumerator Bounce()
+    {
+        yield return new WaitForSeconds(0.1f);
+        float currentSpeed = speed;
+        speed += incrSpeed;
+        v2 = new Vector2(Random.Range(-pan, pan), 1f);
+        currentSpeed += Random.Range(-rngOffSet, rngOffSet);
+        v2 = (v2.normalized) * currentSpeed;
+
+        rb.AddForce(v2);
+    }
     
 
     private void OnTriggerEnter2D(Collider2D collision)
