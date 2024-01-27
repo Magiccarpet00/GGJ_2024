@@ -7,13 +7,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    public static GameManager instance;
-    private Vector3 mainScenePos;
+    [SerializeField] private GameObject cam;
     [SerializeField] List<MiniGameTrigger> miniGameTriggers = new List<MiniGameTrigger>();
-    [SerializeField] LoadingScreen loadingScreen;
+    [SerializeField] LoadingScreen loadingScreenOpen;
+    [SerializeField] LoadingScreen loadingScreenClose;
+    public static GameManager instance;
 
     private MiniGameName currentMiniGame;
-    private MiniGameManager currentMiniGameManager;
+	private Vector3 mainScenePos;
+	private MiniGameManager currentMiniGameManager;
+    private bool isWin;
+    GameObject triggerToDestroy = null;
+    MiniGameTrigger currentLoopGameObject = null;
+
+    private Dictionary<MiniGameName, int> difficultyDictionary;
 
     private void Awake()
     {
@@ -22,84 +29,66 @@ public class GameManager : MonoBehaviour
         {
             item.loadMiniGame += TriggerLoadMiniGame;
         }
-    }
 
-	private void Start()
-	{
-        
+        difficultyDictionary.Add(MiniGameName.CARS, 0);
+        difficultyDictionary.Add(MiniGameName.FIGHT, 0);
+        difficultyDictionary.Add(MiniGameName.FIND, 0);
     }
 
 	private void SceneLoader_SceneLoaded(GameObject[] mainScene, GameObject[] miniGame)
 	{
 		foreach (GameObject item in mainScene)
 		{
-            item.SetActive(item.name == gameObject.name || item.name == loadingScreen.name);           
+            item.SetActive(item.name == gameObject.name);
+  		}
 
-		}
+        loadingScreenOpen.gameObject.SetActive(true);
 
-        loadingScreen.ChangeState(true);
         currentMiniGameManager = miniGame[0].GetComponent<MiniGameManager>();
+        currentMiniGameManager.difficultyParameter = difficultyDictionary[currentMiniGame];
 		currentMiniGameManager.OnWin += CurrentMiniGameManager_OnWin;
 		currentMiniGameManager.OnLose += CurrentMiniGameManager_OnLose;
         SceneLoader.instance.SceneLoaded -= SceneLoader_SceneLoaded;
+
     }
 
 	private void CurrentMiniGameManager_OnLose()
 	{
-		
-	}
-
-	private void CurrentMiniGameManager_OnWin()
-	{
-        loadingScreen.gameObject.SetActive(true);
-        loadingScreen.StartLoading += LoadingScreen_StartLoading_MainScene;
+        isWin = false;
+        cam.SetActive(true);
+        loadingScreenOpen.gameObject.SetActive(false);
+        SceneLoader.instance.LoadMainScene();
+        SceneLoader.instance.SceneUnloaded += Instance_SceneUnloaded;
     }
 
 	private void TriggerLoadMiniGame(MiniGameName obj)
     {
         currentMiniGame = obj;
         mainScenePos = player.position;
-        loadingScreen.gameObject.SetActive(true);
-		loadingScreen.StartLoading += LoadingScreen_StartLoading_MiniGame;
+        loadingScreenOpen.gameObject.SetActive(true);
+		loadingScreenOpen.StartLoading += LoadingScreenOpen_StartLoading_MiniGame;
     }
 
-	private void LoadingScreen_StartLoading_MiniGame()
+	private void LoadingScreenOpen_StartLoading_MiniGame()
 	{
 
-        loadingScreen.StartLoading -= LoadingScreen_StartLoading_MiniGame;
+        loadingScreenOpen.StartLoading -= LoadingScreenOpen_StartLoading_MiniGame;
         SceneLoader.instance.LoadMiniGame(currentMiniGame);
         SceneLoader.instance.SceneLoaded += SceneLoader_SceneLoaded;
+
     }
 
-	private void LoadingScreen_StartLoading_MainScene()
+	private void CurrentMiniGameManager_OnWin()
 	{
+        isWin = true;
+        cam.SetActive(true);
+        loadingScreenOpen.gameObject.SetActive(false);
         SceneLoader.instance.LoadMainScene();
-		SceneLoader.instance.SceneUnloaded += Instance_SceneUnloaded;
+        SceneLoader.instance.SceneUnloaded += Instance_SceneUnloaded;
 	}
 
-	private void Instance_SceneUnloaded(GameObject[] gameObjects)
+	private void LoadingScreenClose_FinishClosing() 
 	{
-        GameObject triggerToDestroy = null;
-        MiniGameTrigger currentLoopGameObject = null;
-        foreach (GameObject item in gameObjects)
-        {
-            if (item.name == "AllMiniGameTriggers")
-			{
-                int childCount = item.transform.childCount;
-				for (int i = 0; i < childCount; i++)
-				{
-                    currentLoopGameObject = item.transform.GetChild(i).GetComponent<MiniGameTrigger>();
-                    if (currentLoopGameObject.gameName == currentMiniGame)
-					{
-                        triggerToDestroy = currentLoopGameObject.gameObject;
-                        break;
-					}
-				}
-			}
-            else
-                item.SetActive(true);
-
-        }
 
         if (triggerToDestroy)
         {
@@ -107,8 +96,50 @@ public class GameManager : MonoBehaviour
             Destroy(triggerToDestroy);
         }
 
-        loadingScreen.ChangeState(true);
+        loadingScreenClose.gameObject.SetActive(false);
+
+        loadingScreenClose.FinishClosing -= LoadingScreenClose_FinishClosing;
+    }
+
+	private void Instance_SceneUnloaded(GameObject[] gameObjects)
+    {
+        
+        foreach (GameObject item in gameObjects)
+        {
+            if (item.name == "AllMiniGameTriggers" && isWin)
+            {
+                int childCount = item.transform.childCount;
+                for (int i = 0; i < childCount; i++)
+                {
+                    currentLoopGameObject = item.transform.GetChild(i).GetComponent<MiniGameTrigger>();
+                    if (currentLoopGameObject.gameName == currentMiniGame)
+                    {
+                        triggerToDestroy = currentLoopGameObject.gameObject;
+                        break;
+                    }
+                }
+                difficultyDictionary[currentMiniGame] += 1;
+            }
+            else
+            {
+                item.SetActive(true);
+            }
+
+        }
+        player.gameObject.SetActive(false);
+        StartCoroutine(WaitforCloseLoading(triggerToDestroy, currentLoopGameObject));
+
+    }
+
+    IEnumerator WaitforCloseLoading(GameObject gameObject, MiniGameTrigger gameTrigger)
+	{
+        loadingScreenClose.gameObject.SetActive(true);
+        loadingScreenClose.FinishClosing += LoadingScreenClose_FinishClosing;
         SceneLoader.instance.SceneUnloaded -= Instance_SceneUnloaded;
+        
+        yield return new WaitForSeconds(0.3f);
+
+        player.gameObject.SetActive(true);
     }
 }
 

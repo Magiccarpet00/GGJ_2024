@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class LoadingScreen : MonoBehaviour
 {
+	public event Action StartLoading;
+	public event Action FinishClosing;
 	private Animator animator;
-	private void Start()
+	private void Awake()
 	{
 		animator = GetComponent<Animator>();
 	}
-	public event Action StartLoading;
+	
     public void StartLoad()
 	{
 		StartLoading?.Invoke();
@@ -18,11 +20,12 @@ public class LoadingScreen : MonoBehaviour
 
 	public void OnClose()
 	{
+		FinishClosing?.Invoke();
 		gameObject.SetActive(false);
 	}
 
 	public void ChangeState(bool isClosing)
-	{
+	{ 
 		animator.SetBool("Close", isClosing);
 	}
 }
