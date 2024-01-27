@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FightMingameManager : MonoBehaviour
+public class FightMingameManager : MiniGameManager
 {
     
     [SerializeField] private Animator player;
@@ -26,14 +26,18 @@ public class FightMingameManager : MonoBehaviour
     [SerializeField] private GameObject prefabWord;
     [SerializeField] private Transform pos1, pos2;
 
+    [SerializeField] private float[] lvl;
+    public int difficulty = 0;
+
     private void Start()
     {
+        damageEnemie = lvl[difficulty];
         StartCoroutine(AutoPunch());
     }
 
     public IEnumerator AutoPunch()
     {
-        yield return new WaitForSeconds(0.3f + Random.Range(-0.2f, 0.1f));
+        yield return new WaitForSeconds(0.3f + Random.Range(-0.2f, 0.2f));
 
         if (winner == 0)
         {
@@ -41,6 +45,7 @@ public class FightMingameManager : MonoBehaviour
             TakeDamage(1);
             StartCoroutine(AutoPunch());
         }
+        
     }
 
     private void TakeDamage(int character)
@@ -58,6 +63,7 @@ public class FightMingameManager : MonoBehaviour
                 winner = 2;
 
                 player.SetTrigger("hurt");
+                Win();
             }
 
             playerBar.value = lifePlayer;
@@ -75,6 +81,7 @@ public class FightMingameManager : MonoBehaviour
                 winner = 1;
 
                 enemie.SetTrigger("hurt");
+                Lose();
             }
 
             enemieBar.value = lifeEnemie;
