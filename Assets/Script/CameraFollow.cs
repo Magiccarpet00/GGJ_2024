@@ -12,11 +12,6 @@ public class CameraFollow : MonoBehaviour
     private float elapsedTime = 0f;
     private Vector2 startPosition;
     private Vector2 currentPos;
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 
     // Update is called once per frame
     void Update()

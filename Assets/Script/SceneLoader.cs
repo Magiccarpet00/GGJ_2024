@@ -6,53 +6,69 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    private const string MAIN_SCENE = "MainScene";
 
-    public event Action MainSceneLoaded;
+    public event Action<GameObject[]> SceneLoaded;
+    public event Action<GameObject[]> SceneUnloaded;
 
     public static SceneLoader instance;
+
+    private string addedScene;
+    private GameObject[] mainSceneObject;
 
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        mainSceneObject = SceneManager.GetActiveScene().GetRootGameObjects();
+
     }
 
     public void LoadMainScene()
 	{
-        StartCoroutine(UnloadAsync(SceneManager.GetActiveScene()));
-        StartCoroutine(LoadAsync(MAIN_SCENE));
+        StartCoroutine(UnloadAsync(addedScene));
     }
 
-	IEnumerator UnloadAsync(Scene currentScene)
-	{
-        AsyncOperation async = SceneManager.UnloadSceneAsync(currentScene);
-
-        while(!async.isDone)
-		{
-            yield return null;
-		}
-	}
 
 	public void LoadMiniGame(MiniGameName miniGameName)
     {
-        StartCoroutine(LoadAsync(miniGameName.ToString()));
+        addedScene = miniGameName.ToString();
+        StartCoroutine(LoadAsync(addedScene));
     }
 
     IEnumerator LoadAsync(string sceneToLoad)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+        
 
         while (!asyncLoad.isDone)
         {
-            switch(sceneToLoad)
-			{
-                case MAIN_SCENE:
-                    MainSceneLoaded?.Invoke();
-                    break;
-			}
+            asyncLoad.completed += AsyncLoad_completed;
             yield return null;
         }
 
+    }
+
+    IEnumerator UnloadAsync(string sceneToUnload)
+	{
+        AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(sceneToUnload);
+
+        while(!asyncUnload.isDone)
+		{
+			asyncUnload.completed += AsyncUnload_completed;
+            yield return null;
+        }
+
+        
+	}
+
+	private void AsyncUnload_completed(AsyncOperation obj)
+	{
+        obj.completed -= AsyncUnload_completed;
+        SceneUnloaded?.Invoke(mainSceneObject);
+    }
+
+	private void AsyncLoad_completed(AsyncOperation obj)
+	{
+        obj.completed -= AsyncLoad_completed;
+        SceneLoaded?.Invoke(mainSceneObject);
     }
 }

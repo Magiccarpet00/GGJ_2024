@@ -214,8 +214,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1590025834}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
@@ -389,8 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db32b1fe9a8ade54ea5f4197ca7a7ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  miniGameTriggers: []
+  player: {fileID: 1927289952}
+  miniGameTriggers:
+  - {fileID: 2059576354}
+  loadingScreen: {fileID: 0}
 --- !u!4 &1185346959
 Transform:
   m_ObjectHideFlags: 0
@@ -608,13 +609,14 @@ GameObject:
   - component: {fileID: 1590025834}
   - component: {fileID: 1590025836}
   - component: {fileID: 1590025835}
+  - component: {fileID: 1590025837}
   m_Layer: 0
   m_Name: fx_pokemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1590025834
 Transform:
   m_ObjectHideFlags: 0
@@ -624,11 +626,11 @@ Transform:
   m_GameObject: {fileID: 1590025833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.35, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 519420032}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1590025835
 Animator:
@@ -703,6 +705,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1590025837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590025833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5dc9208cb8f3340ae9e4b9ad61e5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1927289949
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +998,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2059576354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
+  m_PrefabInstance: {fileID: 4491651050493467652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e15d9278fbcb6409460354d84ad9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4491651050493467652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1047,8 +1072,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1185346959}
   - {fileID: 1927289952}
+  - {fileID: 1590025834}
+  - {fileID: 519420032}
   - {fileID: 2046278759}
   - {fileID: 1498004421}
-  - {fileID: 519420032}
   - {fileID: 4491651050493467652}
   - {fileID: 1287818413}
