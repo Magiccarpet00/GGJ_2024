@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class triggerFin : MonoBehaviour
 {
+    [SerializeField] PlayerMovement playerMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,13 +15,23 @@ public class triggerFin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("coucou");
-        GameManager.instance.StopSounds();
-        GameManager.instance.fin.Play();
+        if(collision.CompareTag("Player"))
+        {
+            GameManager.instance.StopSounds();
+            GameManager.instance.fin.Play();
+            GameManager.instance.endScreen.SetActive(true);
+            playerMovement.inputFreeze = true;
+        }
+     
     }
+
+
+
+
 }
