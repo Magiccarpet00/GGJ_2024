@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 914445189}
     m_Modifications:
+    - target: {fileID: 3869149833427077991, guid: 0eadfd90a9cb0d84794c91c6a04081af, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869149833427077991, guid: 0eadfd90a9cb0d84794c91c6a04081af, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1476417177
+      objectReference: {fileID: 0}
     - target: {fileID: 5569784071004439764, guid: 0eadfd90a9cb0d84794c91c6a04081af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -196,6 +204,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5dc9208cb8f3340ae9e4b9ad61e5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &259673268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259673270}
+  - component: {fileID: 259673269}
+  m_Layer: 0
+  m_Name: vomi_felix
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &259673269
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259673268}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 5513e1e3c3797774cb20463a3d3e4276, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.35, y: 0.9}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &259673270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259673268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0154, y: -0, z: 0}
+  m_LocalScale: {x: 13.1, y: 13.1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &631570892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +296,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 914445189}
     m_Modifications:
+    - target: {fileID: 3869149833427077991, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869149833427077991, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1476417177
+      objectReference: {fileID: 0}
     - target: {fileID: 5569784071004439764, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -214,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569784071004439764, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5569784071004439764, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
       propertyPath: m_LocalRotation.w
@@ -247,6 +347,10 @@ PrefabInstance:
     - target: {fileID: 8633446391226706055, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
       propertyPath: m_Name
       value: fx_pokemonOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633446391226706055, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -597,8 +701,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1042981057
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -485739748, guid: 840a9be266c3783499e8b1d1ac7c0f3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -711,8 +815,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1042981057
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a9721fc2c34df2743869216cad2dc450, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -733,7 +837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223800820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -928,7 +1032,7 @@ MonoBehaviour:
   difficultyParameter: 0
   win: 0
   lose: 0
-  miniGameTime: 10
+  miniGameTime: 15
   gameStarted: 0
   ball: {fileID: 1223800825}
   prefabBras: {fileID: 626612003412971502, guid: d4b4d7277b8c0dc4eb9a3f5b775c068b, type: 3}
@@ -1260,9 +1364,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1551789977}
-  - {fileID: 914445189}
   - {fileID: 1223800823}
+  - {fileID: 914445189}
   - {fileID: 658128798}
   - {fileID: 1054845510}
   - {fileID: 1264168897}
   - {fileID: 2078161131}
+  - {fileID: 259673270}
