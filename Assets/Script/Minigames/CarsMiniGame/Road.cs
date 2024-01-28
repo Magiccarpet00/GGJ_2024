@@ -30,6 +30,14 @@ public class Road : MonoBehaviour
 		}
 	}
 
+	public void StopObstacles()
+    {
+		foreach (GameObject item in obstaclePosition)
+		{
+			item.SetActive(false);
+		}
+	}
+
 	private void Road_OnCollide()
 	{
 		OnCollide?.Invoke();

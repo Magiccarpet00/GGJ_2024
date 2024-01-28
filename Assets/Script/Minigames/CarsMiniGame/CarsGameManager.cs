@@ -58,6 +58,7 @@ public class CarsGameManager : MiniGameManager
 
 	private void CarsGameManager_OnWin()
 	{
+		roads.Win();
 		StartCoroutine(WaitBeforeLoading());
 		winScreen.transform.GetChild(0).GetComponent<WinScreen>().OnWin -= CarsGameManager_OnWin;
 		
@@ -65,6 +66,7 @@ public class CarsGameManager : MiniGameManager
 
 	IEnumerator WaitBeforeLoading()
 	{
+
 		yield return new WaitForSeconds(2);
 		Win();
 	}
