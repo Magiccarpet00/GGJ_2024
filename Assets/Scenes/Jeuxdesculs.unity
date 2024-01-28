@@ -12106,10 +12106,8 @@ MonoBehaviour:
   assetTag: 
   firstGameObjectClicked: {fileID: 0}
   secondGameObjectClicked: {fileID: 0}
-  timer: 50
-  canvas:
-  - {fileID: 688867629}
-  - {fileID: 1502129010}
+  timer: 80
+  canvas: {fileID: 688867629}
   clickPossible: 1
   winSound: {fileID: 1217540756}
   looseSound: {fileID: 297241846}

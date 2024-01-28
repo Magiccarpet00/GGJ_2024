@@ -16,7 +16,7 @@ public class parentScript : MiniGameManager
 
     public float timer = 60;
 
-    public List<GameObject> canvas;
+    public GameObject canvas;
 
     GameObject currentCanvas;
 
@@ -56,22 +56,19 @@ public class parentScript : MiniGameManager
         {
             firstGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
             secondGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
-            
-
         }
 
         if (currentCanvas.transform.childCount == 1)
         {
             StopCoroutine(coroutineTimer);
             hasWon = true;
-            //Win();
-            Debug.Log("t'as gagné");
+            Win();
         }
     }
 
     private void setupLevel ()
     {
-        currentCanvas = canvas[difficultyParameter];
+        currentCanvas = canvas;
         currentCanvas.SetActive(true);
     }
 
@@ -110,9 +107,8 @@ public class parentScript : MiniGameManager
 
     IEnumerator Timer(float timer)
     {
-        yield return new WaitForSeconds(timer);
-        //Lose();
-        Debug.Log("T'as perdu");
+        yield return new WaitForSeconds(timer + 1.20f);
+        Lose();
     }
 
     public void EndAnimation()
