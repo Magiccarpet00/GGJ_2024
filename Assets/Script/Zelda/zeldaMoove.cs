@@ -9,6 +9,12 @@ public class zeldaMoove : MonoBehaviour
 
     private bool letsMoove = false;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
     {
         if(letsMoove)
@@ -30,5 +36,6 @@ public class zeldaMoove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         letsMoove = true;
+        animator.SetBool("zeldaWalking", true);
     }
 }
