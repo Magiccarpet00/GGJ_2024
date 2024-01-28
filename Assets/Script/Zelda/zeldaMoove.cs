@@ -4,31 +4,27 @@ using UnityEngine;
 
 public class zeldaMoove : MonoBehaviour
 {
-    public float deplacementX = 0.0001f; // Montant de déplacement en X
-    public float deplacementY = 0.0f; // Montant de déplacement en Y
+    [SerializeField] private float speed;
+    [SerializeField] private Rigidbody2D rb;
+    private Vector2 movement;
 
-    private bool letsMoove = false;
+    public bool letsMoove = false;
 
     private Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        movement.x = 1.0f;
+        movement.y = 0.0f;
     }
-    void Update()
+    void FixedUpdate()
     {
         if(letsMoove)
-        {
-            // Obtenez la position actuelle du GameObject
-            Vector2 positionActuelle = transform.position;
-
-            // Calculez la nouvelle position en ajoutant le déplacement
-            Vector2 nouvellePosition = new Vector2(positionActuelle.x + deplacementX, positionActuelle.y + deplacementY);
-
-            // Définissez la nouvelle position du GameObject
-            transform.position = nouvellePosition;
+        { 
+          rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
-       
+
     }
 
  
