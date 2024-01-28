@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<MiniGameTrigger> miniGameTriggers = new List<MiniGameTrigger>();
     [SerializeField] LoadingScreen loadingScreenOpen;
     [SerializeField] LoadingScreen loadingScreenClose;
+    [SerializeField] GameObject endScreen;
     [SerializeField] private float delayBetweenAmbients = 10f;
     [SerializeField] private Transform allAmbients;
     [SerializeField] private AudioSource ambience;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private bool isWin;
     GameObject triggerToDestroy = null;
     MiniGameTrigger currentLoopGameObject = null;
+    public bool playAmbientSound = true;
 
     private Dictionary<MiniGameName, MiniGameTrigger> triggers = new Dictionary<MiniGameName, MiniGameTrigger>();
 
@@ -50,16 +52,17 @@ public class GameManager : MonoBehaviour
 
     private void AmbientSounds()
 	{
-        MainSoundManager.instance.Play(ChooseAmbient());
-        StartCoroutine(InBetweenAmbients(delayBetweenAmbients));
+        if(playAmbientSound)
+        {
+            MainSoundManager.instance.Play(ChooseAmbient());
+            StartCoroutine(InBetweenAmbients(delayBetweenAmbients));
+        }
+       
 	}
 
     public void StopSounds()
     {
-        for (int i = 0; i < allAmbients.childCount; i++)
-        {
-            MainSoundManager.instance.Stop(allAmbients.GetChild(i).GetComponent<AudioSource>());
-        }
+        playAmbientSound = false;
 
         MainSoundManager.instance.Stop(ambience);
         MainSoundManager.instance.Stop(kiss);

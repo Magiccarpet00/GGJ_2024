@@ -3478,9 +3478,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -2129205217480682995, guid: 30e7b8dc3450a9b4cacb08aff17819a6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 23c49f6bc4366fb419e85f93ef91b373, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 68a81cdf9bf946b4d9fde3bf489b9689, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6652,11 +6652,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265363052}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

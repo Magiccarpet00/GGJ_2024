@@ -13,13 +13,17 @@ public class triggerFin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("coucou");
         GameManager.instance.StopSounds();
         GameManager.instance.fin.Play();
     }
+
+
+
+
 }
