@@ -11,25 +11,31 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform footsteps;
     private Vector2 movement;
 
+    public bool inputFreeze = true;
+
 	void Update()
     {
 
+        if(inputFreeze == false)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+            if (movement.x != 0 || movement.y != 0)
+            {
+                int rand = UnityEngine.Random.Range(0, footsteps.childCount);
+                AudioSource newFootstep = footsteps.GetChild(rand).GetComponent<AudioSource>();
+                if (!newFootstep.isPlaying)
+                    MainSoundManager.instance.Play(newFootstep);
+                else
+                    MainSoundManager.instance.Stop(newFootstep);
+            }
 
-        if(movement.x != 0 || movement.y != 0)
-		{
-            int rand = UnityEngine.Random.Range(0, footsteps.childCount);
-            AudioSource newFootstep = footsteps.GetChild(rand).GetComponent<AudioSource>();
-            if (!newFootstep.isPlaying)
-                MainSoundManager.instance.Play(newFootstep);
-            else
-                MainSoundManager.instance.Stop(newFootstep);
+            animator.SetFloat("Left", movement.y);
+            animator.SetFloat("Up", movement.x);
+
         }
-
-        animator.SetFloat("Left", movement.y);
-        animator.SetFloat("Up", movement.x);
+       
     }
 
     private void FixedUpdate()
@@ -45,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
     public void EndAnimWin()
 	{
         animator.SetBool("isWinning", false);
+    }
+
+    public void DefreezePlayer()
+    {
+        inputFreeze = false;
     }
 
 
