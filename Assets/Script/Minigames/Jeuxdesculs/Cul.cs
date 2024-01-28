@@ -13,6 +13,7 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,12 +79,13 @@ public class Cul : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPo
 
     public void DestroyImage()
     {
+        parentScript.instance.winSound.Play();
         Destroy(this.gameObject);
     }
 
     public void DontMatchImage()
     {
-  
+        parentScript.instance.looseSound.Play();
         assetImage.color = currentColor;
         isClicked = false;
 

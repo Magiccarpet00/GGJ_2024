@@ -22,6 +22,9 @@ public class parentScript : MiniGameManager
 
     public bool clickPossible = true;
 
+    public AudioSource winSound;
+    public AudioSource looseSound;
+
 
 
     private void Awake()
@@ -33,6 +36,7 @@ public class parentScript : MiniGameManager
     {
         //launchTimer(timer);
         setupLevel();
+
     }
 
     // Update is called once per frame
@@ -44,11 +48,14 @@ public class parentScript : MiniGameManager
             firstGameObjectClicked.GetComponent<Animator>().SetBool("Disapear",true);
             secondGameObjectClicked.GetComponent<Animator>().SetBool("Disapear",true);
 
+
         }
-        if(firstGameObjectClicked != null && secondGameObjectClicked != null && firstGameObjectClicked.tag != secondGameObjectClicked.tag) 
+        if (firstGameObjectClicked != null && secondGameObjectClicked != null && firstGameObjectClicked.tag != secondGameObjectClicked.tag) 
         {
             firstGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
             secondGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
+            
+
         }
 
         //if(currentCanvas.transform.childCount == 0)
