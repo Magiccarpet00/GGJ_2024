@@ -4716,11 +4716,11 @@ Transform:
   m_GameObject: {fileID: 787752551}
   serializedVersion: 2
   m_LocalRotation: {x: 0.047501914, y: -0, z: -0, w: 0.99887115}
-  m_LocalPosition: {x: 0, y: 1.68, z: -1.38}
+  m_LocalPosition: {x: 0.14138037, y: 2.7035656, z: -0.15464294}
   m_LocalScale: {x: 0.3242, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1325949529}
   m_LocalEulerAnglesHint: {x: 5.445, y: 0, z: 0}
 --- !u!114 &787752555
 MonoBehaviour:
@@ -7883,6 +7883,7 @@ Transform:
   - {fileID: 1359121908}
   - {fileID: 409370378}
   - {fileID: 236722067}
+  - {fileID: 787752554}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325949530
@@ -11753,7 +11754,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1040162574}
-  - {fileID: 787752554}
   - {fileID: 1325949529}
   - {fileID: 345654158}
   - {fileID: 1432812248}
