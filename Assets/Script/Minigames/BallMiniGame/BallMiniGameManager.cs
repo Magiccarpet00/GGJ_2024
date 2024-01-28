@@ -21,6 +21,11 @@ public class BallMiniGameManager : MiniGameManager
     [SerializeField] private float offSetTime;
 
     [SerializeField] private float[] speedTab;
+    [SerializeField] private AudioClip music;
+    [SerializeField] private AudioClip loseSound;
+    [SerializeField] private AudioClip wineSound;
+
+    [SerializeField] private AudioSource audioSource;
 
     private void Awake()
     {
@@ -28,10 +33,16 @@ public class BallMiniGameManager : MiniGameManager
         ball.speed = speedTab[difficultyParameter];
     }
 
+    private void Start()
+    {
+        audioSource.PlayOneShot(music);
+    }
+
     public void StartGame()
     {
         gameStarted = true;
         StartCoroutine(Chronos());
+        
     }
     
     public void PreLose()
@@ -39,6 +50,7 @@ public class BallMiniGameManager : MiniGameManager
         if (win == false)
         {
             lose = true;
+            audioSource.PlayOneShot(loseSound);
             Lose();
         }
     }   
@@ -50,17 +62,13 @@ public class BallMiniGameManager : MiniGameManager
         if(lose == false)
         {
             win = true;
+            audioSource.PlayOneShot(wineSound);
             Win();
         }
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R)) // CODE TMP
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldPosition.z = 0;
 
