@@ -14,7 +14,7 @@ public class parentScript : MiniGameManager
 
     Coroutine coroutineTimer;
 
-    private float timer = 60;
+    public float timer = 60;
 
     public List<GameObject> canvas;
 
@@ -25,6 +25,8 @@ public class parentScript : MiniGameManager
     public AudioSource winSound;
     public AudioSource looseSound;
 
+    public bool hasWon = false;
+
 
 
     private void Awake()
@@ -34,7 +36,7 @@ public class parentScript : MiniGameManager
     // Start is called before the first frame update
     void Start()
     {
-        //launchTimer(timer);
+        launchTimer(timer);
         setupLevel();
 
     }
@@ -58,17 +60,19 @@ public class parentScript : MiniGameManager
 
         }
 
-        //if(currentCanvas.transform.childCount == 0)
-        //{
-        //    StopCoroutine(coroutineTimer);
-        //    Win();
-        //}
+        if (currentCanvas.transform.childCount == 1)
+        {
+            StopCoroutine(coroutineTimer);
+            hasWon = true;
+            //Win();
+            Debug.Log("t'as gagné");
+        }
     }
 
     private void setupLevel ()
     {
-        //currentCanvas = canvas[difficultyParameter];
-        //currentCanvas.SetActive(true);
+        currentCanvas = canvas[difficultyParameter];
+        currentCanvas.SetActive(true);
     }
 
     private void launchTimer(float timer)
@@ -107,8 +111,8 @@ public class parentScript : MiniGameManager
     IEnumerator Timer(float timer)
     {
         yield return new WaitForSeconds(timer);
-
-        Lose();
+        //Lose();
+        Debug.Log("T'as perdu");
     }
 
     public void EndAnimation()
