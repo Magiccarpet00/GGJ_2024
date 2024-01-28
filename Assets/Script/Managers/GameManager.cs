@@ -149,15 +149,7 @@ public class GameManager : MonoBehaviour
         
         foreach (GameObject item in gameObjects)
         {
-            if (item.name == "AllMiniGameTriggers" && isWin)
-            {
-                continue;
-            }
-            else
-			{
-                item.SetActive(true);
-            }
-
+            item.SetActive(true);
         }
 
         triggers[currentMiniGame].gameObject.SetActive(false);
