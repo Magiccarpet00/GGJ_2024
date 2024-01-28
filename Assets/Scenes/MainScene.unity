@@ -4938,7 +4938,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: gameName
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: linkedDoor
@@ -9746,7 +9746,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: gameName
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: linkedDoor
@@ -11471,7 +11471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: gameName
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 122181487666176262, guid: 0a1b37ce05b734b4eb426889a3f12fda, type: 3}
       propertyPath: linkedDoor

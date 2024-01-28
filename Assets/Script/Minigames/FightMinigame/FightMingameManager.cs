@@ -68,6 +68,7 @@ public class FightMingameManager : MiniGameManager
                 winner = 2;
 
                 player.SetTrigger("hurt");
+                Debug.Log("coucou");
                 Lose();
             }
 

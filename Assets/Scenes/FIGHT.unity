@@ -1501,6 +1501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: fx_pokemonOpen
       objectReference: {fileID: 0}
+    - target: {fileID: 8633446391226706055, guid: 3db18a5c303194241aec768d7d285b84, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
