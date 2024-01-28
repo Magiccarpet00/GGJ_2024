@@ -13,7 +13,7 @@ public class MainSoundManager : MonoBehaviour
 
 	public void Play(AudioSource clipToPlay)
 	{
-		clipToPlay.PlayOneShot(clipToPlay.clip);
+		clipToPlay.Play();
 	}
 
 	public void Stop(AudioSource clipToStop)

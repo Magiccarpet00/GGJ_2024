@@ -180,7 +180,6 @@ public class GameManager : MonoBehaviour
         player.position = mainScenePos;
         player.gameObject.SetActive(true);
         if(isWin) player.GetComponent<PlayerMovement>().SetAnimWin();
-
         AmbientSounds();
 
     }
