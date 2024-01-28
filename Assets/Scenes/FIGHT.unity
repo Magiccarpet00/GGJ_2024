@@ -1556,7 +1556,9 @@ MonoBehaviour:
   difficultyParameter: 0
   audioSource: {fileID: 832014952}
   audioClip: {fileID: 8300000, guid: 6c8d458c12eb4a540a7ec339af9e24f4, type: 3}
-  audioPunch: {fileID: 8300000, guid: fa1320eeb8c00ed4e89b3ab8cd2ed3d9, type: 3}
+  audioPunches:
+  - {fileID: 8300000, guid: 50d32ed492ecaad40a5a232be56aec51, type: 3}
+  - {fileID: 8300000, guid: fa1c6f3292c2e58498e6f247643a42aa, type: 3}
   player: {fileID: 1344151143}
   enemie: {fileID: 1068113392}
   playerBar: {fileID: 1025575358}

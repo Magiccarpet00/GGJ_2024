@@ -24,7 +24,6 @@ public class MiniGameManager : MonoBehaviour
 
 	private void Open_Win()
 	{
-		
 		OnWin?.Invoke();
 	}
 
@@ -39,10 +38,4 @@ public class MiniGameManager : MonoBehaviour
 		OnLose?.Invoke();
 	}
 
-	public IEnumerator Test()
-    {
-        yield return new WaitForSeconds(5);
-
-        Win();
-    }
 }

@@ -11,6 +11,9 @@ public class RoadManager : MonoBehaviour
 	[SerializeField] private RoadDetector roadEndPoint;
 
 	private List<Road> roads = new List<Road>();
+	private bool isPlaying = false;
+
+	public event System.Action OnCollide;
 
 	public void Init()
 	{
@@ -20,9 +23,23 @@ public class RoadManager : MonoBehaviour
 			currentRoad = transform.GetChild(i).GetComponent<Road>();
 			if (i > 2) currentRoad.Init();
 			roads.Add(currentRoad);
+			currentRoad.OnCollide += CurrentRoad_OnCollide;
 		}
 
 		roadEndPoint.OnRoadCollide += RoadEndPoint_OnRoadCollide;
+
+		isPlaying = true;
+	}
+
+	private void CurrentRoad_OnCollide()
+	{
+		OnCollide?.Invoke();
+		isPlaying = false;
+	}
+
+	public void StopRoad()
+	{
+		isPlaying = false;
 	}
 
 	private void RoadEndPoint_OnRoadCollide(Road obj)
@@ -36,6 +53,8 @@ public class RoadManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+		if (!isPlaying) return;
+
 		foreach (Road road in roads)
 		{
 			MoveRoad(road.transform);

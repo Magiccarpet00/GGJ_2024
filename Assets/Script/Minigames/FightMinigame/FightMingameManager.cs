@@ -8,7 +8,7 @@ public class FightMingameManager : MiniGameManager
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private AudioClip audioPunch;
+    [SerializeField] private List<AudioClip> audioPunches;
 
     [SerializeField] private Animator player;
     [SerializeField] private Animator enemie;
@@ -47,7 +47,7 @@ public class FightMingameManager : MiniGameManager
         {
             enemie.SetTrigger("punch");
             TakeDamage(1);
-            audioSource.PlayOneShot(audioPunch);
+            audioSource.PlayOneShot(audioPunches[Random.Range(0, 2)]);
             StartCoroutine(AutoPunch());
         }
         

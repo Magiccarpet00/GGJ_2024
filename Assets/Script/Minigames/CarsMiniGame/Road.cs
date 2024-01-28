@@ -5,6 +5,7 @@ using UnityEngine;
 public class Road : MonoBehaviour
 {
     [SerializeField] private List<GameObject> obstaclePosition = new List<GameObject>();
+	public event System.Action OnCollide;
 
 	public void Init()
 	{
@@ -22,8 +23,13 @@ public class Road : MonoBehaviour
 		{
 			currentObs = obstaclePosition[Random.Range(0, 3)];
 			currentObs.transform.GetChild(0).GetComponent<Obstacle>().SetupObstacle();
+			currentObs.transform.GetChild(0).GetComponent<Obstacle>().OnCollide += Road_OnCollide;
 			currentObs.SetActive(true);
 		}
 	}
-    
+
+	private void Road_OnCollide()
+	{
+		OnCollide?.Invoke();
+	}
 }

@@ -12,6 +12,13 @@ public class CarsGameManager : MiniGameManager
 	[SerializeField] private float moveDuration;
 
 	[SerializeField] private RoadManager roads;
+	[SerializeField] private GameObject carBounce;
+	[SerializeField] private GameObject winScreen;
+
+	[SerializeField] private AudioSource introClip;
+	[SerializeField] private AudioSource loop;
+	[SerializeField] private AudioSource win;
+	[SerializeField] private AudioSource lose;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,17 +30,59 @@ public class CarsGameManager : MiniGameManager
 	{
 		intro.gameObject.SetActive(true);
 		intro.OnFinish += Intro_OnFinish;
+		CarSoundManager.instance.Play(introClip);
 	}
 
 	private void Intro_OnFinish()
 	{
 		intro.gameObject.SetActive(false);
+		CarSoundManager.instance.Play(player.engine);
 		StartCoroutine(MovePlayer());
+		
+	}
+
+	IEnumerator Timer(float timer)
+	{
+		yield return new WaitForSeconds(timer);
+
+		CarSoundManager.instance.Play(win);
+
+		player.gameObject.SetActive(false);
+		roads.StopRoad();
+		carBounce.SetActive(true);
+		winScreen.SetActive(true);
+		winScreen.transform.GetChild(0).GetComponent<WinScreen>().OnWin += CarsGameManager_OnWin;
+	}
+
+	private void CarsGameManager_OnWin()
+	{
+		StartCoroutine(WaitBeforeLoading());
+		winScreen.transform.GetChild(0).GetComponent<WinScreen>().OnWin -= CarsGameManager_OnWin;
+		
+	}
+
+	IEnumerator WaitBeforeLoading()
+	{
+		yield return new WaitForSeconds(2);
+		Win();
 	}
 
 	private void StartGame()
 	{
 		roads.Init();
+		roads.OnCollide += Roads_OnCollide;
+		player.AnimEnded += Player_AnimEnded;
+	}
+
+	private void Player_AnimEnded()
+	{
+		CarSoundManager.instance.Play(lose);
+		Lose();
+	}
+
+	private void Roads_OnCollide()
+	{
+		player.Death();
 	}
 
 	IEnumerator MovePlayer()
@@ -47,8 +96,8 @@ public class CarsGameManager : MiniGameManager
 
 
 		yield return new WaitForSeconds(2);
-
-		StartGame();
+		StartCoroutine(Timer(3f));
+		//StartGame();
 
 	}
 

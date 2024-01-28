@@ -11,21 +11,27 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private Image loading;
     [SerializeField] private float loadingDuration;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject OptionScreen;
 
     private float elapsedTime;
 
-    // Start is called before the first frame update
-    void Start()
+	private void OnEnable()
+	{
+        loading.GetComponent<Image>().fillAmount = 0;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         play.onClick.AddListener(OnPlay);
     }
 
 	private void OnPlay()
 	{
-        StartCoroutine(CloseAnimation());
+        StartCoroutine(CloseAnimation(true));
 	}
 
-    IEnumerator CloseAnimation()
+    IEnumerator CloseAnimation(bool wasPlayPressed)
 	{
         while(loading.fillAmount < 1)
 		{
@@ -34,7 +40,12 @@ public class TitleScreen : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene("MainScene");
+        if (wasPlayPressed) SceneManager.LoadScene("MainScene");
+        else
+        {
+            OptionScreen.SetActive(true);
+            gameObject.SetActive(false);
+        }
         yield return null;
 
 	}

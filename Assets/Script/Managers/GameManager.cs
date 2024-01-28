@@ -12,18 +12,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<MiniGameTrigger> miniGameTriggers = new List<MiniGameTrigger>();
     [SerializeField] LoadingScreen loadingScreenOpen;
     [SerializeField] LoadingScreen loadingScreenClose;
+    [SerializeField] private float delayBetweenAmbients = 10f;
+    [SerializeField] private Transform allAmbients;
+    [SerializeField] private AudioSource ambience;
+    [SerializeField] private AudioSource kiss;
+    [SerializeField] private AudioSource neon;
+
     public static GameManager instance;
 
     private MiniGameName currentMiniGame;
-	private Vector3 mainScenePos;
-	private MiniGameManager currentMiniGameManager;
+    private Vector3 mainScenePos;
+    private MiniGameManager currentMiniGameManager;
     private bool isWin;
     GameObject triggerToDestroy = null;
     MiniGameTrigger currentLoopGameObject = null;
 
     private Dictionary<MiniGameName, int> difficultyDictionary = new Dictionary<MiniGameName, int>();
 
-    private void Awake()
+
+	private void Awake()
     {
         instance = this;
         foreach (MiniGameTrigger item in miniGameTriggers)
@@ -34,7 +41,28 @@ public class GameManager : MonoBehaviour
         difficultyDictionary.Add(MiniGameName.CARS, 0);
         difficultyDictionary.Add(MiniGameName.FIGHT, 0);
         difficultyDictionary.Add(MiniGameName.FIND, 0);
+
+        MainSoundManager.instance.Play(ambience);
+        AmbientSounds();
     }
+
+    private void AmbientSounds()
+	{
+        MainSoundManager.instance.Play(ChooseAmbient());
+        StartCoroutine(InBetweenAmbients(delayBetweenAmbients));
+	}
+
+    IEnumerator InBetweenAmbients (float timer)
+    {
+        yield return new WaitForSeconds(timer);
+
+        AmbientSounds();
+    }
+
+    private AudioSource ChooseAmbient()
+	{
+        return allAmbients.GetChild(UnityEngine.Random.Range(0, allAmbients.childCount)).GetComponent<AudioSource>();
+	}
 
 	private void SceneLoader_SceneLoaded(GameObject[] mainScene, GameObject[] miniGame)
 	{
@@ -42,6 +70,7 @@ public class GameManager : MonoBehaviour
 		{
             item.SetActive(item.name == gameObject.name);
   		}
+
 
         loadingScreenOpen.gameObject.SetActive(true);
 
@@ -142,6 +171,9 @@ public class GameManager : MonoBehaviour
         
         player.position = mainScenePos;
         player.gameObject.SetActive(true);
+        player.GetComponent<PlayerMovement>().SetAnimWin();
+
+        AmbientSounds();
 
     }
 }
