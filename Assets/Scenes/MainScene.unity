@@ -1976,6 +1976,7 @@ MonoBehaviour:
   animator: {fileID: 395301226}
   rb: {fileID: 0}
   footsteps: {fileID: 1666781957}
+  inputFreeze: 1
 --- !u!95 &395301226
 Animator:
   serializedVersion: 5
@@ -8966,7 +8967,7 @@ Transform:
   m_GameObject: {fileID: 1751694230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.444, y: -3.171, z: 0}
+  m_LocalPosition: {x: -7.372, y: -3.217, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8987,9 +8988,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   rb: {fileID: 1751694232}
-  finalPositionZeldaX: 8.21
-  finalPositionZeldaY: 4.4
-  letsMoove: 0
+  finalPositionZeldaX: 8.77
+  finalPositionZeldaY: 4.79
+  etat: 0
 --- !u!1 &1784470585
 GameObject:
   m_ObjectHideFlags: 0
@@ -9356,6 +9357,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rb: {fileID: 0}
   footsteps: {fileID: 1666781957}
+  inputFreeze: 1
 --- !u!212 &1819802219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9995,6 +9997,7 @@ MonoBehaviour:
   animator: {fileID: 1927289950}
   rb: {fileID: 1927289954}
   footsteps: {fileID: 1666781957}
+  inputFreeze: 1
 --- !u!50 &1927289954
 Rigidbody2D:
   serializedVersion: 4

@@ -10,7 +10,7 @@ public class zeldaMoove : MonoBehaviour
     [SerializeField] float finalPositionZeldaY;
     private Vector2 movement;
 
-    public bool letsMoove = false;
+    public int etat = 0;
 
     private Animator animator;
 
@@ -22,7 +22,7 @@ public class zeldaMoove : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(letsMoove)
+        if(etat == 1)
         { 
           rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         }
@@ -31,9 +31,14 @@ public class zeldaMoove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        letsMoove = true;
-        animator.SetBool("zeldaWalking", true);
-        StartCoroutine(TPZelda());
+        if(etat==0)
+        {
+            etat = 1;
+            animator.SetBool("zeldaWalking", true);
+            StartCoroutine(TPZelda());
+        }
+
+        
     }
 
     IEnumerator TPZelda()
@@ -42,6 +47,6 @@ public class zeldaMoove : MonoBehaviour
 
         transform.position = new Vector2(finalPositionZeldaX, finalPositionZeldaY);
         animator.SetBool("zeldaWalking", false);
-        letsMoove = false;
+        etat = 2;
     }
 }
