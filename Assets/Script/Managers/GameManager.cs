@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource ambience;
     [SerializeField] private AudioSource kiss;
     [SerializeField] private AudioSource neon;
+    [SerializeField] public AudioSource fin;
 
     public static GameManager instance;
 
@@ -51,6 +52,18 @@ public class GameManager : MonoBehaviour
         MainSoundManager.instance.Play(ChooseAmbient());
         StartCoroutine(InBetweenAmbients(delayBetweenAmbients));
 	}
+
+    public void StopSounds()
+    {
+        for (int i = 0; i < allAmbients.childCount; i++)
+        {
+            MainSoundManager.instance.Stop(allAmbients.GetChild(i).GetComponent<AudioSource>());
+        }
+
+        MainSoundManager.instance.Stop(ambience);
+        MainSoundManager.instance.Stop(kiss);
+        MainSoundManager.instance.Stop(neon);
+    }
 
     IEnumerator InBetweenAmbients (float timer)
     {
