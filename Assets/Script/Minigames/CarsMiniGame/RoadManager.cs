@@ -37,6 +37,14 @@ public class RoadManager : MonoBehaviour
 		isPlaying = false;
 	}
 
+	public void Win()
+    {
+		foreach (Road item in roads)
+		{
+			item.StopObstacles();
+		}
+	}
+
 	public void StopRoad()
 	{
 		isPlaying = false;

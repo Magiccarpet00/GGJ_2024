@@ -49,7 +49,7 @@ public class Car : MonoBehaviour
 
         if (hold) 
 		{
-            elapsedTime += Time.deltaTime * speed;
+            elapsedTime += Time.deltaTime;
             MoveCar();
             transform.position = Vector3.MoveTowards(transform.position, PlayerlastPos, elapsedTime / moveDuration);
             animator.SetFloat("Direction", controller.direction);
