@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
 
 	private void SceneLoader_SceneLoaded(GameObject[] mainScene, GameObject[] miniGame)
 	{
+        MiniGameManager memory;
+        
 		foreach (GameObject item in mainScene)
 		{
             item.SetActive(item.name == gameObject.name);
@@ -88,7 +90,12 @@ public class GameManager : MonoBehaviour
 
         loadingScreenOpen.gameObject.SetActive(true);
 
-        currentMiniGameManager = miniGame[0].GetComponent<MiniGameManager>();
+        foreach (GameObject item in miniGame)
+        {
+            if (item.TryGetComponent<MiniGameManager>(out memory))
+                currentMiniGameManager = memory;
+        }
+
 		currentMiniGameManager.OnWin += CurrentMiniGameManager_OnWin;
 		currentMiniGameManager.OnLose += CurrentMiniGameManager_OnLose;
         SceneLoader.instance.SceneLoaded -= SceneLoader_SceneLoaded;

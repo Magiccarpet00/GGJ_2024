@@ -71,6 +71,7 @@ public class SceneLoader : MonoBehaviour
 	private void AsyncLoad_completed(AsyncOperation obj)
 	{
         obj.completed -= AsyncLoad_completed;
+        Debug.Log(SceneManager.GetSceneAt(1).GetRootGameObjects()[0]);
         SceneLoaded?.Invoke(mainSceneObject, SceneManager.GetSceneAt(1).GetRootGameObjects());
     }
 }
