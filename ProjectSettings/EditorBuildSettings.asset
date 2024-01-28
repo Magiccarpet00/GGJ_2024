@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FIND.unity
     guid: cb5456dac7c528b4e92259d3b239ad66
+  - enabled: 1
+    path: Assets/Scenes/MCFIRST.unity
+    guid: fd73f1feb3786f14abc91f0301aadaef
   m_configObjects: {}

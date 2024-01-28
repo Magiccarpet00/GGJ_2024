@@ -22,6 +22,6 @@ public class MiniGameTrigger : MonoBehaviour
 
 	private void OnDestroy()
 	{
-        linkedDoor.GetComponent<Door>().Open();
+        linkedDoor.GetComponent<Door>()?.Open();
 	}
 }

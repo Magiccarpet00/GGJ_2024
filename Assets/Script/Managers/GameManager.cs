@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             item.SetActive(true);
         }
 
-        triggers[currentMiniGame].gameObject.SetActive(false);
+        triggers[currentMiniGame].gameObject.SetActive(!isWin);
         player.gameObject.SetActive(false);
         StartCoroutine(WaitforCloseLoading(triggerToDestroy, currentLoopGameObject));
 

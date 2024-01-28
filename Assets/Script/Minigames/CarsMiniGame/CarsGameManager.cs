@@ -9,6 +9,7 @@ public class CarsGameManager : MiniGameManager
 	[SerializeField] private Vector3 startPos;
 	[SerializeField] private Car player;
 	private float elapsedTime;
+	[SerializeField] private float time;
 	[SerializeField] private float moveDuration;
 
 	[SerializeField] private RoadManager roads;
@@ -19,6 +20,7 @@ public class CarsGameManager : MiniGameManager
 	[SerializeField] private AudioSource loop;
 	[SerializeField] private AudioSource win;
 	[SerializeField] private AudioSource lose;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -69,6 +71,7 @@ public class CarsGameManager : MiniGameManager
 
 	private void StartGame()
 	{
+		StartCoroutine(Timer(time));
 		roads.Init();
 		roads.OnCollide += Roads_OnCollide;
 		player.AnimEnded += Player_AnimEnded;
@@ -83,6 +86,7 @@ public class CarsGameManager : MiniGameManager
 	private void Roads_OnCollide()
 	{
 		player.Death();
+		StopAllCoroutines();
 	}
 
 	IEnumerator MovePlayer()
