@@ -7,7 +7,7 @@ public class BallMiniGameManager : MiniGameManager
     public static BallMiniGameManager instance;
     [SerializeField] private bool win;
     public bool lose;
-    [SerializeField] private float miniGameTime;
+    public float miniGameTime;
 
     [HideInInspector] public bool gameStarted;
 
