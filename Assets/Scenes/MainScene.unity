@@ -5950,12 +5950,14 @@ MonoBehaviour:
   - {fileID: 1354762417}
   loadingScreenOpen: {fileID: 1227114310}
   loadingScreenClose: {fileID: 1476912933}
+  endScreen: {fileID: 6401615979862592474}
   delayBetweenAmbients: 10
   allAmbients: {fileID: 1889055592}
   ambience: {fileID: 686351161}
   kiss: {fileID: 202708525}
   neon: {fileID: 238111101}
   fin: {fileID: 1265363056}
+  playAmbientSound: 1
 --- !u!4 &1185346959
 Transform:
   m_ObjectHideFlags: 0

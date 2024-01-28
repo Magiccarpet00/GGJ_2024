@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<MiniGameTrigger> miniGameTriggers = new List<MiniGameTrigger>();
     [SerializeField] LoadingScreen loadingScreenOpen;
     [SerializeField] LoadingScreen loadingScreenClose;
-    [SerializeField] GameObject endScreen;
+    [SerializeField] public GameObject endScreen;
     [SerializeField] private float delayBetweenAmbients = 10f;
     [SerializeField] private Transform allAmbients;
     [SerializeField] private AudioSource ambience;

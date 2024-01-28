@@ -21,6 +21,7 @@ public class triggerFin : MonoBehaviour
     {
         GameManager.instance.StopSounds();
         GameManager.instance.fin.Play();
+        GameManager.instance.endScreen.SetActive(true);
     }
 
 
