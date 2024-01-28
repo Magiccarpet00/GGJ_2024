@@ -68,7 +68,7 @@ public class Car : MonoBehaviour
 
     private void MoveCar()
 	{
-        Vector3 movement = controller.direction * Vector3.right;
+        Vector3 movement = controller.direction * Vector3.right * speed;
         PlayerlastPos = startPlayerPos + movement;
 	}
 

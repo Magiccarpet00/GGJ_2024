@@ -7,6 +7,8 @@ public class Road : MonoBehaviour
     [SerializeField] private List<GameObject> obstaclePosition = new List<GameObject>();
 	public event System.Action OnCollide;
 
+	public bool hasObstacles;
+
 	public void Init()
 	{
 		foreach (GameObject item in obstaclePosition)

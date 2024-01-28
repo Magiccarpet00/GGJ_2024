@@ -21,7 +21,7 @@ public class RoadManager : MonoBehaviour
 		for (int i = 0; i < nbrOfRoadPortion; i++)
 		{
 			currentRoad = transform.GetChild(i).GetComponent<Road>();
-			if (i > 2) currentRoad.Init();
+			if (i > 2 && currentRoad.hasObstacles) currentRoad.Init();
 			roads.Add(currentRoad);
 			currentRoad.OnCollide += CurrentRoad_OnCollide;
 		}

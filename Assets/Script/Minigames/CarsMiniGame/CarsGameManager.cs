@@ -95,9 +95,8 @@ public class CarsGameManager : MiniGameManager
 		}
 
 
-		yield return new WaitForSeconds(2);
-		StartCoroutine(Timer(3f));
-		//StartGame();
+		yield return new WaitForSeconds(2);;
+		StartGame();
 
 	}
 
