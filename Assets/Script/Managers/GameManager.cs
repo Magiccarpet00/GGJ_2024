@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     GameObject triggerToDestroy = null;
     MiniGameTrigger currentLoopGameObject = null;
 
-    private Dictionary<MiniGameName, int> difficultyDictionary = new Dictionary<MiniGameName, int>();
+    private Dictionary<MiniGameName, MiniGameTrigger> triggers = new Dictionary<MiniGameName, MiniGameTrigger>();
 
 
 	private void Awake()
@@ -39,9 +39,10 @@ public class GameManager : MonoBehaviour
             item.loadMiniGame += TriggerLoadMiniGame;
         }
 
-        difficultyDictionary.Add(MiniGameName.CARS, 0);
-        difficultyDictionary.Add(MiniGameName.FIGHT, 0);
-        difficultyDictionary.Add(MiniGameName.FIND, 0);
+		foreach (MiniGameTrigger item in miniGameTriggers)
+		{
+            triggers.Add(item.gameName, item);
+		}
 
         MainSoundManager.instance.Play(ambience);
         AmbientSounds();
@@ -88,7 +89,6 @@ public class GameManager : MonoBehaviour
         loadingScreenOpen.gameObject.SetActive(true);
 
         currentMiniGameManager = miniGame[0].GetComponent<MiniGameManager>();
-        currentMiniGameManager.difficultyParameter = difficultyDictionary[currentMiniGame];
 		currentMiniGameManager.OnWin += CurrentMiniGameManager_OnWin;
 		currentMiniGameManager.OnLose += CurrentMiniGameManager_OnLose;
         SceneLoader.instance.SceneLoaded -= SceneLoader_SceneLoaded;
@@ -151,24 +151,16 @@ public class GameManager : MonoBehaviour
         {
             if (item.name == "AllMiniGameTriggers" && isWin)
             {
-                int childCount = item.transform.childCount;
-                for (int i = 0; i < childCount; i++)
-                {
-                    currentLoopGameObject = item.transform.GetChild(i).GetComponent<MiniGameTrigger>();
-                    if (currentLoopGameObject.gameName == currentMiniGame)
-                    {
-                        triggerToDestroy = currentLoopGameObject.gameObject;
-                        break;
-                    }
-                }
-                difficultyDictionary[currentMiniGame] += 1;
+                continue;
             }
             else
-            {
+			{
                 item.SetActive(true);
             }
 
         }
+
+        triggers[currentMiniGame].gameObject.SetActive(false);
         player.gameObject.SetActive(false);
         StartCoroutine(WaitforCloseLoading(triggerToDestroy, currentLoopGameObject));
 
@@ -184,7 +176,7 @@ public class GameManager : MonoBehaviour
         
         player.position = mainScenePos;
         player.gameObject.SetActive(true);
-        player.GetComponent<PlayerMovement>().SetAnimWin();
+        if(isWin) player.GetComponent<PlayerMovement>().SetAnimWin();
 
         AmbientSounds();
 

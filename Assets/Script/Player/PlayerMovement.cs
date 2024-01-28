@@ -21,15 +21,7 @@ public class PlayerMovement : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (movement.x != 0 || movement.y != 0)
-            {
-                int rand = UnityEngine.Random.Range(0, footsteps.childCount);
-                AudioSource newFootstep = footsteps.GetChild(rand).GetComponent<AudioSource>();
-                if (!newFootstep.isPlaying)
-                    MainSoundManager.instance.Play(newFootstep);
-                else
-                    MainSoundManager.instance.Stop(newFootstep);
-            }
+            
 
             animator.SetFloat("Left", movement.y);
             animator.SetFloat("Up", movement.x);
