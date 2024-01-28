@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
 
         triggers[currentMiniGame].gameObject.SetActive(!isWin);
+        triggers[currentMiniGame].OpenDoor(isWin);
         player.gameObject.SetActive(false);
         StartCoroutine(WaitforCloseLoading(triggerToDestroy, currentLoopGameObject));
 

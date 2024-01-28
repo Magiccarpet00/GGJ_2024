@@ -16,14 +16,12 @@ public class MiniGameTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             loadMiniGame?.Invoke(gameName, this);
-            //gameObject.SetActive(false);
         }
     }
 
-	private void OnDestroy()
+	public void OpenDoor(bool isWin)
 	{
-        Debug.Log("toto");
-        if(linkedDoor != null)
+        if(linkedDoor != null && isWin)
         {
             linkedDoor.GetComponent<Door>().Open();
         }
