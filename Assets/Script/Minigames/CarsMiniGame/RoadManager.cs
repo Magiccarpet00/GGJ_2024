@@ -39,9 +39,9 @@ public class RoadManager : MonoBehaviour
 
 	public void Win()
     {
-		foreach (GameObject item in obstaclePosition)
+		foreach (Road item in roads)
 		{
-			item.SetActive(false);
+			item.StopObstacles();
 		}
 	}
 
