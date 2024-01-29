@@ -50,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
         inputFreeze = false;
     }
 
+    public void FreezePlayer()
+    {
+        inputFreeze = true;
+    }
+
 
 
 

@@ -47,6 +47,7 @@ public class CarsGameManager : MiniGameManager
 	{
 		yield return new WaitForSeconds(timer);
 
+		CarSoundManager.instance.Stop(introClip);
 		CarSoundManager.instance.Play(win);
 
 		player.gameObject.SetActive(false);

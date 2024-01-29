@@ -58,7 +58,7 @@ public class parentScript : MiniGameManager
             secondGameObjectClicked.GetComponent<Animator>().SetBool("NotMatch",true);
         }
 
-        if (currentCanvas.transform.childCount == 1)
+        if (currentCanvas.transform.childCount == 2)
         {
             StopCoroutine(coroutineTimer);
             hasWon = true;
